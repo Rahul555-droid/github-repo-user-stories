@@ -7,7 +7,7 @@ import { useAuth } from './Providers/AuthProvider'
 import { LoginBanner } from './components/LoginBanner'
 
 const Root: React.FC = () => {
-  const { user,  } = useAuth()
+  const { user, loading } = useAuth();
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-secondary">
       <Header />
@@ -18,7 +18,7 @@ const Root: React.FC = () => {
             <Route path="/repo/:id" element={<RepoDetail />} />
           </Routes>
         </main>
-      ) : <LoginBanner /> }
+      ) : (!loading && <LoginBanner />) }
     </div>
   )
 }

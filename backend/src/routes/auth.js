@@ -67,7 +67,7 @@ const router = express.Router();
         httpOnly: true,
       });
 
-      res.redirect("http://localhost:3003/"); // Redirect to the frontend
+      res.redirect(process.env.FRONTEND_URL); // Redirect to the frontend
     } catch (error) {
       console.error("GitHub OAuth Error:", error);
       res.status(500).send("Error authenticating with GitHub");

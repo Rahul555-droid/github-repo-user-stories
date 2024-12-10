@@ -11,6 +11,7 @@ interface AuthContextType {
   user: User | null
   login: () => void
   logout: () => void
+  loading : boolean
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -19,14 +20,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children
 }) => {
   const [user, setUser] = useState<User | null>(null)
+  const [loading , setLoading] = useState(false);
 
   const fetchUser = async () => {
     try {
+      setLoading(true)
       const { data } = await axios.get('http://localhost:4000/auth/me', {
         withCredentials: true
       })
       setUser(data.user)
+      setLoading(false)
     } catch {
+      setLoading(false)
       setUser(null)
     }
   }
@@ -50,7 +55,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout , loading }}>
       {children}
     </AuthContext.Provider>
   )

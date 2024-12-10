@@ -8,7 +8,7 @@ const { sequelize, User } = require("./models");
 const cors = require("cors");
 const authRoutes = require("./routes/auth");
 
-require("dotenv").config();
+// require("dotenv").config();
 
 const startServer = async () => {
   // Initialize Express
@@ -16,15 +16,13 @@ const startServer = async () => {
 
   app.use(
     cors({
-      origin: "http://localhost:3003", // Replace with your frontend URL
+      origin: "http://localhost:3003", 
       credentials: true, // Allow cookies to be sent
     })
   );
 
-  // Middleware
   app.use(cookieParser());
 
-  // Sync Sequelize models
   await sequelize.sync();
 
   // Apollo Server setup
@@ -50,7 +48,6 @@ const startServer = async () => {
   //routes 
   app.use("/auth", authRoutes);
 
-  // Start Express server
   const PORT = 4000;
   app.listen(PORT, () => {
     console.log(`🚀 Server ready at http://localhost:${PORT}`);
