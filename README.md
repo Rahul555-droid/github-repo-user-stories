@@ -30,7 +30,7 @@ This project fulfills the core requirements and implements several stretch goals
 3. **Data Synchronization**:
    - A "Refresh" button allows users to manually reload data from GitHub’s API.
 
-### **Stretch Goals Achieved** (PARTIAL)
+### **Stretch Goals Achieved** 
 - **Release Details UI**: Provides a detailed view of the latest release, including release notes and commit history.Due to time constraints, this functionality does not involve backend API integration.
 - **Mobile Responsiveness**: The app ensures seamless functionality on both desktop and mobile devices.
 - **Authentication**: Personalized repository tracking implemented via GitHub OAuth, ensuring secure user sessions.
