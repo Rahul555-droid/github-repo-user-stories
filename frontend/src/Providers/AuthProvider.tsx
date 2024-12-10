@@ -1,0 +1,59 @@
+import React, { createContext, useState, useEffect, useContext } from 'react';
+import axios from 'axios';
+
+interface User {
+  id: number;
+  login: string;
+  avatar_url: string;
+}
+
+interface AuthContextType {
+  user: User | null;
+  login: () => void;
+  logout: () => void;
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [user, setUser] = useState<User | null>(null);
+
+  const fetchUser = async () => {
+    try {
+      const { data } = await axios.get('http://localhost:4000/auth/me', { withCredentials: true });
+      setUser(data.user);
+    } catch {
+      setUser(null);
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+  const login = () => {
+    window.location.href = 'http://localhost:4000/auth/github';
+  };
+
+  const logout = async () => {
+    // await axios.post('http://localhost:4000/auth/logout', {}, { withCredentials: true });
+    document.cookie = 'github_token=; Max-Age=0';
+    document.cookie = 'github_user=; Max-Age=0';
+    setUser(null);
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};
+

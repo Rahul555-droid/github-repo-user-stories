@@ -1,17 +1,11 @@
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
-import { Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-// import { useTheme } from "next-themes"
-import DarkModeToggle from "./DarkModeToggle"
+import DarkModeToggle from './DarkModeToggle'
+import { useAuth } from '@/Providers/AuthProvider'
+import React from 'react'
+import { Button } from './ui/button'
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 
 export function Header() {
-//   const { setTheme } = useTheme()
-
+  const { user, login, logout } = useAuth()
   return (
     <header className="bg-background/80 backdrop-blur-sm border-b border-border/50 sticky top-0 z-50">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
@@ -20,8 +14,25 @@ export function Header() {
         </h1>
         <DarkModeToggle />
 
+        <div className="flex items-center space-x-4">
+          {user ? (
+            <div className="flex items-center space-x-2">
+              <Avatar>
+                <AvatarImage src={user.avatar_url} alt={user.login} />
+                <AvatarFallback>
+                  {user.login.slice(0, 2).toUpperCase()}
+                </AvatarFallback>
+              </Avatar>
+              <span>{user.login}</span>
+              <Button onClick={logout} variant="outline">
+                Log out
+              </Button>
+            </div>
+          ) : (
+            <Button onClick={login}>Log in with GitHub</Button>
+          )}
+        </div>
       </div>
     </header>
   )
 }
-
