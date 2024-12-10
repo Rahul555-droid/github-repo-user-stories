@@ -14,7 +14,7 @@ const typeDefs = gql`
     version: String!
     releaseDate: String!
     repository: Repository!
-    seen: Boolean! # Add the 'seen' field
+    seen: Boolean! 
   }
 
   type UserRepository {

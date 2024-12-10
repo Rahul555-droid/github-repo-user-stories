@@ -110,8 +110,8 @@ module.exports = {
           // Fetch the latest release for the repository
           const { data: latestReleaseData } =
             await octokit.repos.getLatestRelease({
-              owner: repository.url.split("/")[3], // Extract owner from URL
-              repo: repository.url.split("/")[4], // Extract repo from URL
+              owner: repository.url.split("/")[3], 
+              repo: repository.url.split("/")[4], 
             });
 
           // Check if the release already exists in the database
@@ -142,7 +142,6 @@ module.exports = {
         }
       }
 
-      // Return success status (true if all went well, false if any error occurred)
       return success;
     },
   },
