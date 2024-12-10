@@ -117,7 +117,7 @@ This project fulfills the core requirements and implements several stretch goals
 ### **Prerequisites**
 - **Node.js** (>= 18.x or 20.x)
 - **PostgreSQL** (installed and running)
-- **GitHub Developer Account** for OAuth credentials
+- **GitHub Developer Account** for OAuth credentials (unless shared with you)
 
 ### **Environment Variables**
 Create a `.env` file on the backend with the following variables:
