@@ -9,7 +9,8 @@ Users can add repositories, mark releases as "seen," and identify updates with v
 ## **What’s Implemented**
 
 This project fulfills the core requirements and implements several stretch goals, showcasing thoughtful design and robust functionality:
-![chrome-capture-2024-11-11](https://github.com/user-attachments/assets/37356f8a-9555-47d6-b7ad-7f38c393ad97)
+![image](https://github.com/user-attachments/assets/fc7e02f5-3355-4e54-8f86-7bc81d4ab9d9)
+
 
 ### **Core Requirements Achieved** (COMPLETE)
 1. **Frontend**:
