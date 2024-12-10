@@ -70,7 +70,6 @@ This project fulfills the core requirements and implements several stretch goals
 
 ---
 
-
 ## **Setup Instructions**
 
 ### **Prerequisites**
@@ -79,7 +78,7 @@ This project fulfills the core requirements and implements several stretch goals
 - **GitHub Developer Account** for OAuth credentials
 
 ### **Environment Variables**
-Create a `.env` file with the following variables:
+Create a `.env` file on the backend with the following variables:
 ```env
 GITHUB_CLIENT_ID=<your_github_client_id>
 GITHUB_CLIENT_SECRET=<your_github_client_secret>
@@ -88,6 +87,9 @@ NODE_ENV=development
 GITHUB_TOKEN=<GITHUB PERSONAL ACCESS TOKEN>
 FRONTEND_URL=http://localhost:3003/
 ```
+
+### backend/src/config/config.json
+Normal Sequelize config but requires a postgres db connection (shared over mail if you know me)
 
 ### **Installation**
 1. Clone the repository:
