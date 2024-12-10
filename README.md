@@ -49,7 +49,7 @@ This project fulfills the core requirements and implements several stretch goals
    - So a repository if once has been added to the database it can be tracked by multiple users. Instead of storing the same Repository for every user who might put the same repo so it is quite scalable .       Releases are also not dependent on user.
    - So there's zero duplicacy in database.
 
-#### 1. **Repositories Table**
+ **Repositories Table**
 
 | Column | Type | Details |
 | --- | --- | --- |
@@ -62,7 +62,7 @@ This project fulfills the core requirements and implements several stretch goals
 
 ---
 
-#### 2. **Releases Table**
+ **Releases Table**
 
 | Column | Type | Details |
 | --- | --- | --- |
@@ -75,8 +75,7 @@ This project fulfills the core requirements and implements several stretch goals
 | `updatedAt` | Date | Timestamp |
 
 ---
-
-#### 3. **UserRepositories Table**
+**UserRepositories Table**
 
 | Column | Type | Details |
 | --- | --- | --- |
@@ -86,7 +85,7 @@ This project fulfills the core requirements and implements several stretch goals
 | `createdAt` | Date | Timestamp |
 | `updatedAt` | Date | Timestamp |
 
-#### 4. **User Table**
+ **User Table**
    Pretty simple table stores id,githubId,username,email,avatarUrl,accessToken
 
 2. **On-Demand Data Fetching**:
