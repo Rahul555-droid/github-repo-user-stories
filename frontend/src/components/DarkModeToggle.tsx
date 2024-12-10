@@ -1,12 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { MoonIcon, SunIcon } from '@radix-ui/react-icons'
 import { Button } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu'
+import { MoonIcon, SunIcon } from '@radix-ui/react-icons'
+import React, { useEffect, useState } from 'react'
 
 const DarkModeToggle: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(true)

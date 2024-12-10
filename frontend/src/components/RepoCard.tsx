@@ -45,7 +45,7 @@ export function RepoCard({
           : 'bg-gradient-to-br from-primary/20 to-secondary/20 border-primary'
       }`}
     >
-      <Link to={`/repo/${repo.id}`}>
+      <Link to={`/repo/${repo.id}`} state={{ repo }}>
         <CardHeader className="pb-2">
           <CardTitle className="flex items-center justify-between">
             <span className="flex items-center gap-2">
@@ -77,7 +77,9 @@ export function RepoCard({
       <CardFooter>
         <Button
           variant={'default'}
-          className={`w-full rounded-full transition-all duration-300 ${repo.seen ? 'invisible' : 'visible'} `}
+          className={`w-full rounded-full transition-all duration-300 ${
+            repo.seen ? 'invisible' : 'visible'
+          } `}
           onClick={handleSeenClick}
         >
           <EyeNoneIcon className="mr-2 h-4 w-4" /> Mark as Seen

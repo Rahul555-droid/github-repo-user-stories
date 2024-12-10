@@ -69,10 +69,11 @@ export function RepoList() {
             ? {
                 ...repository,
                 seenReleases,
-                seen:
-                  latestRelease && seenReleases?.length
+                seen: seenReleases?.length
+                  ? latestRelease
                     ? seenReleases.includes(latestRelease.id)
-                    : true,
+                    : true
+                  : false,
                 latestRelease,
                 releaseDate: latestRelease?.releaseDate
                   ? new Date(Number(latestRelease.releaseDate))

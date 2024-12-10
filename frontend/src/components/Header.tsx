@@ -26,7 +26,7 @@ export function Header() {
                 </AvatarFallback>
               </Avatar>
               <span>{user.login}</span>
-              <Button onClick={logout} 
+              <Button onClick={logout}
                         className="rounded-full w-full sm:w-auto"
               >
                 Log out

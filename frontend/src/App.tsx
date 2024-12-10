@@ -4,20 +4,21 @@ import { Header } from './components/Header'
 import RepoDetail from './components/RepoDetail'
 import { RepoList } from './components/RepoList'
 import { useAuth } from './Providers/AuthProvider'
+import { LoginBanner } from './components/LoginBanner'
 
 const Root: React.FC = () => {
-  const { user, login, logout } = useAuth()
+  const { user,  } = useAuth()
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-secondary">
       <Header />
-      {user && (
+      {user ? (
         <main className="container mx-auto py-6 px-4">
           <Routes>
             <Route path="/" element={<RepoList />} />
             <Route path="/repo/:id" element={<RepoDetail />} />
           </Routes>
         </main>
-      )}
+      ) : <LoginBanner /> }
     </div>
   )
 }
