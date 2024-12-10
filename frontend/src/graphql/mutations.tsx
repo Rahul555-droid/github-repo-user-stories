@@ -1,34 +1,27 @@
-import { gql } from '@apollo/client';
+import { gql } from '@apollo/client'
 
 export const ADD_REPOSITORY = gql`
-  mutation AddRepository( $url: String!) {
+  mutation AddRepository($url: String!) {
     addRepository(url: $url) {
-      id
-      name
-      url
-      description
+      repository {
+        id
+        name
+        url
+        description
+      }
+      seenReleases
     }
   }
-`;
-
-
-export const FETCH_LATEST_RELEASE = gql`
-  mutation FetchLatestRelease($repositoryId: ID!) {
-    fetchLatestRelease(repositoryId: $repositoryId) {
-      id
-      version
-      releaseDate
-      seen
-    }
-  }
-`;
+`
 
 export const MARK_RELEASE_AS_SEEN = gql`
-  mutation MarkReleaseAsSeen($releaseId: ID!) {
-    markReleaseAsSeen(releaseId: $releaseId) {
-      id
-      version
-      seen
-    }
+  mutation MarkReleaseAsSeen($repositoryId: ID!, $releaseId: ID!) {
+    markReleaseAsSeen(repositoryId: $repositoryId, releaseId: $releaseId)
   }
-`;
+`
+
+export const REFRESH_REPOSITORIES = gql`
+  mutation RefreshReleases {
+    refreshReleases
+  }
+`

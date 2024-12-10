@@ -9,10 +9,12 @@ export function Header() {
   return (
     <header className="bg-background/80 backdrop-blur-sm border-b border-border/50 sticky top-0 z-50">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <h1 className="text-2xl font-bold bg-clip-text from-primary to-primary-foreground">
-          GitHub Issue Tracker
-        </h1>
-        <DarkModeToggle />
+        <div className='flex justify-start gap-1' >
+          <h1 className="text-2xl font-bold bg-clip-text from-primary to-primary-foreground">
+            GitHub Issue Tracker
+          </h1>
+          <DarkModeToggle />
+        </div>
 
         <div className="flex items-center space-x-4">
           {user ? (
@@ -24,7 +26,9 @@ export function Header() {
                 </AvatarFallback>
               </Avatar>
               <span>{user.login}</span>
-              <Button onClick={logout} variant="outline">
+              <Button onClick={logout} 
+                        className="rounded-full w-full sm:w-auto"
+              >
                 Log out
               </Button>
             </div>

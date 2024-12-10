@@ -1,20 +1,32 @@
 import { gql } from '@apollo/client';
 
-// GraphQL Queries and Mutations
-export const GET_REPOSITORIES = gql`
-  query GetRepositories {
-    getRepositories {
-      id
-      name
-      url
-      description
-      releases {
+export const GET_USER_REPOSITORIES = gql`
+  query GetUserRepositories {
+    getUserRepositories {
+      repository {
         id
-        version
-        releaseDate
-        seen
+        name
+        url
+        description
+        releases {
+          id
+          version
+          releaseDate
+        }
       }
+      seenReleases
     }
   }
 `;
 
+
+export const GET_RELEASES = gql`
+  query GetReleases($repositoryId: ID!) {
+    getReleases(repositoryId: $repositoryId) {
+      id
+      version
+      releaseDate
+      seen
+    }
+  }
+`;

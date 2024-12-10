@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server');
+const { gql } = require("apollo-server");
 
 const typeDefs = gql`
   type Repository {
@@ -13,21 +13,25 @@ const typeDefs = gql`
     id: ID!
     version: String!
     releaseDate: String!
-    seen: Boolean!
     repository: Repository!
+    seen: Boolean! # Add the 'seen' field
+  }
+
+  type UserRepository {
+    repository: Repository!
+    seenReleases: [ID!]! # Array of seen release IDs for the user
   }
 
   type Query {
-    getRepositories: [Repository!]!
+    getUserRepositories: [UserRepository!]!
     getRepository(id: ID!): Repository
     getReleases(repositoryId: ID!): [Release!]!
   }
 
   type Mutation {
-    addRepository(url: String!): Repository!
-    addRelease(repositoryId: ID!, version: String!, releaseDate: String!): Release!
-    markReleaseAsSeen(releaseId: ID!): Release!
-    fetchLatestRelease(repositoryId: ID!): Release!
+    addRepository(url: String!): UserRepository!
+    markReleaseAsSeen(repositoryId: ID!, releaseId: ID!): Boolean!
+    refreshReleases: Boolean!
   }
 `;
 

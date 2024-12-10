@@ -2,7 +2,8 @@
 import {
   ApolloClient,
   ApolloProvider,
-  InMemoryCache
+  InMemoryCache,
+  HttpLink
 } from '@apollo/client'
 import { createRoot } from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from 'react-query'
@@ -16,8 +17,14 @@ const container = document.getElementById('root') as HTMLDivElement
 const root = createRoot(container)
 
 const queryClient = new QueryClient()
+
+const httpLink = new HttpLink({
+  uri: 'http://localhost:4000/graphql', // Your GraphQL endpoint
+  credentials: 'include', // This ensures cookies are sent with the request
+});
+
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql', // Replace with your backend URL if different
+  link: httpLink,
   cache: new InMemoryCache()
 })
 
