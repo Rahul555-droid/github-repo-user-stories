@@ -4,13 +4,12 @@
 The GitHub Repository Tracker is a full-stack app for managing GitHub repositories and tracking their latest releases. 
 Users can add repositories, mark releases as "seen," and identify updates with visual indicators. Built with React, TypeScript,ShadCN , Express, GraphQL ,Apollo Server, and PostgreSQL it features secure GitHub OAuth authentication and integrates Octokit for GitHub API interactioms.
 
-![chrome-capture-2024-11-11](https://github.com/user-attachments/assets/37356f8a-9555-47d6-b7ad-7f38c393ad97)
-
 ---
 
 ## **What’s Implemented**
 
 This project fulfills the core requirements and implements several stretch goals, showcasing thoughtful design and robust functionality:
+![chrome-capture-2024-11-11](https://github.com/user-attachments/assets/37356f8a-9555-47d6-b7ad-7f38c393ad97)
 
 ### **Core Requirements Achieved** (COMPLETE)
 1. **Frontend**:
@@ -20,6 +19,7 @@ This project fulfills the core requirements and implements several stretch goals
    - Filter functionality for seen/unseen statuses.
    - Client Side Caching using Apollo in memory cache
    - Latest Release Information available on Card
+   
 
 2. **Backend**:
    - Apollo Server GraphQL backend - wrote modular and clean code.
@@ -32,8 +32,12 @@ This project fulfills the core requirements and implements several stretch goals
 
 ### **Stretch Goals Achieved** 
 - **Release Details UI**: Provides a detailed view of the latest release, including release notes and commit history.Due to time constraints, this functionality does not involve backend API integration.
+- ![image](https://github.com/user-attachments/assets/dab3ff76-d177-4283-ad64-a2cf83de5563)
 - **Mobile Responsiveness**: The app ensures seamless functionality on both desktop and mobile devices.
+- ![image](https://github.com/user-attachments/assets/35681328-a375-46be-9795-d764b7e1091b)
 - **Authentication**: Personalized repository tracking implemented via GitHub OAuth, ensuring secure user sessions.
+- ![image](https://github.com/user-attachments/assets/f2ad043e-20bd-4c99-8ba3-bbdae729d74e)
+- ![image](https://github.com/user-attachments/assets/8cb4354b-2de6-4e09-8c04-4f585d506862)
 
 ---
 
@@ -44,7 +48,45 @@ This project fulfills the core requirements and implements several stretch goals
    - So a repository if once has been added to the database it can be tracked by multiple users. Instead of storing the same Repository for every user who might put the same repo so it is quite scalable .       Releases are also not dependent on user.
    - So there's zero duplicacy in database.
 
-   
+#### 1. **Repositories Table**
+
+| Column | Type | Details |
+| --- | --- | --- |
+| `id` | Integer | Primary key |
+| `name` | String | Repository name |
+| `url` | String | Unique, repository URL |
+| `description` | String | Repository description |
+| `createdAt` | Date | Timestamp |
+| `updatedAt` | Date | Timestamp |
+
+---
+
+#### 2. **Releases Table**
+
+| Column | Type | Details |
+| --- | --- | --- |
+| `id` | Integer | Primary key |
+| `repositoryId` | Integer | Foreign key to Repositories |
+| `version` | String | Release version |
+| `githubReleaseId` | String | Release id unique for github |
+| `releaseDate` | Date | Release date |
+| `createdAt` | Date | Timestamp |
+| `updatedAt` | Date | Timestamp |
+
+---
+
+#### 3. **UserRepositories Table**
+
+| Column | Type | Details |
+| --- | --- | --- |
+| `userId` | Integer | Foreign key to Users |
+| `repositoryId` | Integer | Foreign key to Repositories |
+| `seenReleases` | JSON/Array | Stores IDs or metadata of seen releases |
+| `createdAt` | Date | Timestamp |
+| `updatedAt` | Date | Timestamp |
+
+#### 4. **User Table**
+   Pretty simple table stores id,githubId,username,email,avatarUrl,accessToken
 
 2. **On-Demand Data Fetching**:
    - Release details are "refreshed" for a repo during add repository . This update in release will occur for any other users who track it. Apart from the manual refresh.
