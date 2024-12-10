@@ -10,6 +10,7 @@
   },
   "scripts": {
     "dev": "vite",
+    "start":"vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
     "test": "vitest",
