@@ -16,23 +16,23 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 interface Repo {
-  id: number
+  id: string
   name: string
   description: string
-  latestVersion: string
-  lastUpdated: string
-  seen: boolean
+  url: string
+  releases: any[],
 }
 
 export function RepoCard({ repo }: { repo: Repo }) {
-  const [seen, setSeen] = useState(repo.seen)
+  console.log({ repo })
+  const [seen, setSeen] = useState(!repo.releases.length)
   const [fetchLatestRelease] = useMutation(FETCH_LATEST_RELEASE)
   const [markReleaseAsSeen] = useMutation(MARK_RELEASE_AS_SEEN)
 
   // Handle marking a release as seen
   const handleMarkAsSeen = async (releaseId: string) => {
     try {
-      await markReleaseAsSeen({ variables: { releaseId } });
+      await markReleaseAsSeen({ variables: { releaseId } })
       // refetch() // Refresh the release data
     } catch (err) {
       console.error(err)
@@ -69,8 +69,8 @@ export function RepoCard({ repo }: { repo: Repo }) {
             {repo.description}
           </p>
           <div className="mt-4 flex justify-between text-sm">
-            <span className="font-semibold">v{repo.latestVersion}</span>
-            <span className="text-muted-foreground">{repo.lastUpdated}</span>
+            <span className="font-semibold">v some version</span>
+            <span className="text-muted-foreground">last updated</span>
           </div>
         </CardContent>
       </Link>

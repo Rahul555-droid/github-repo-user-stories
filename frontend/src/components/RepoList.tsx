@@ -39,17 +39,17 @@ export function RepoList() {
     });
   }, [data, filter]);
 
-  const sortedRepos = useMemo(() => {
-    return [...filteredRepos].sort((a: any, b: any) => {
-      if (sort === "name") return a.name.localeCompare(b.name);
-      if (sort === "date") {
-        const aDate = new Date(a.releases?.[0]?.releaseDate || 0).getTime();
-        const bDate = new Date(b.releases?.[0]?.releaseDate || 0).getTime();
-        return bDate - aDate;
-      }
-      return 0;
-    });
-  }, [filteredRepos, sort]);
+  // const sortedRepos = useMemo(() => {
+  //   return [...filteredRepos].sort((a: any, b: any) => {
+  //     if (sort === "name") return a.name.localeCompare(b.name);
+  //     if (sort === "date") {
+  //       const aDate = new Date(a.releases?.[0]?.releaseDate || 0).getTime();
+  //       const bDate = new Date(b.releases?.[0]?.releaseDate || 0).getTime();
+  //       return bDate - aDate;
+  //     }
+  //     return 0;
+  //   });
+  // }, [filteredRepos, sort]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -94,7 +94,7 @@ export function RepoList() {
 
       {/* Repository Cards */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {sortedRepos.map((repo: any) => (
+        {filteredRepos.map((repo: any) => (
           <RepoCard key={repo.id} repo={repo} />
         ))}
       </div>
