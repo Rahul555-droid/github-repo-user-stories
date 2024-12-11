@@ -27,6 +27,7 @@ This project fulfills the core requirements and implements several stretch goals
    - PostgreSQL database => Stores User , Repositories , Releases.etc. Used Database As a Service of EDB.
    - Secure authentication via GitHub OAuth with HTTP-only cookies.
    - Octokit integration for GitHub API interactions.
+   - No Data duplicacy . Secure GraphQL endpoint such that no user can query other user's data!
 
 3. **Data Synchronization**:
    - A "Refresh" button allows users to manually reload data from GitHub’s API.
@@ -48,6 +49,7 @@ This project fulfills the core requirements and implements several stretch goals
    - Repositories, users, and releases are stored in a normalized structure, ensuring no duplication. A junction table (`UserRepository`) links users with their tracked repositories and manages seen statuses.
    - So a repository if once has been added to the database it can be tracked by multiple users. Instead of storing the same Repository for every user who might put the same repo so it is quite scalable .       Releases are also not dependent on user.
    - So there's zero duplicacy in database.
+   - Secure GraphQL endpoint such that no user can query other user's data! I have access to user's details as a cookie on the backend side which I pass to the context of Apollo Server
 
  **Repositories Table**
 
